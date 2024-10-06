@@ -1,0 +1,13 @@
+E:\ASP_.Net\Midterm\BUS\bin\Debug\BUS.dll
+E:\ASP_.Net\Midterm\BUS\bin\Debug\BUS.pdb
+E:\ASP_.Net\Midterm\BUS\bin\Debug\DAL.dll
+E:\ASP_.Net\Midterm\BUS\bin\Debug\DTO.dll
+E:\ASP_.Net\Midterm\BUS\bin\Debug\System.Data.SqlClient.dll
+E:\ASP_.Net\Midterm\BUS\bin\Debug\DAL.pdb
+E:\ASP_.Net\Midterm\BUS\bin\Debug\DTO.pdb
+E:\ASP_.Net\Midterm\BUS\bin\Debug\System.Data.SqlClient.xml
+E:\ASP_.Net\Midterm\BUS\obj\Debug\BUS.csproj.AssemblyReference.cache
+E:\ASP_.Net\Midterm\BUS\obj\Debug\BUS.csproj.CoreCompileInputs.cache
+E:\ASP_.Net\Midterm\BUS\obj\Debug\BUS.csproj.Up2Date
+E:\ASP_.Net\Midterm\BUS\obj\Debug\BUS.dll
+E:\ASP_.Net\Midterm\BUS\obj\Debug\BUS.pdb
