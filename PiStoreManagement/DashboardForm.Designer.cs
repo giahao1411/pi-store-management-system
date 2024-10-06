@@ -49,23 +49,23 @@
             this.pathLevel = new System.Windows.Forms.Label();
             this.panelEmployees = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelNumOfEmployee = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panelOrders = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelNumOfOrder = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panelClients = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelNumOfClient = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panelProducts = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelNumOfProduct = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.panelBills = new System.Windows.Forms.Panel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelNumOfBill = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -318,7 +318,7 @@
             // 
             this.panelEmployees.BackColor = System.Drawing.SystemColors.Highlight;
             this.panelEmployees.Controls.Add(this.pictureBox2);
-            this.panelEmployees.Controls.Add(this.label6);
+            this.panelEmployees.Controls.Add(this.labelNumOfEmployee);
             this.panelEmployees.Controls.Add(this.label5);
             this.panelEmployees.Location = new System.Drawing.Point(420, 250);
             this.panelEmployees.Name = "panelEmployees";
@@ -335,16 +335,16 @@
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
-            // label6
+            // labelNumOfEmployee
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label6.Location = new System.Drawing.Point(15, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(184, 69);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "1,000";
+            this.labelNumOfEmployee.AutoSize = true;
+            this.labelNumOfEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumOfEmployee.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelNumOfEmployee.Location = new System.Drawing.Point(15, 73);
+            this.labelNumOfEmployee.Name = "labelNumOfEmployee";
+            this.labelNumOfEmployee.Size = new System.Drawing.Size(184, 69);
+            this.labelNumOfEmployee.TabIndex = 1;
+            this.labelNumOfEmployee.Text = "1,000";
             // 
             // label5
             // 
@@ -361,7 +361,7 @@
             // 
             this.panelOrders.BackColor = System.Drawing.Color.LightCoral;
             this.panelOrders.Controls.Add(this.pictureBox3);
-            this.panelOrders.Controls.Add(this.label7);
+            this.panelOrders.Controls.Add(this.labelNumOfOrder);
             this.panelOrders.Controls.Add(this.label8);
             this.panelOrders.Location = new System.Drawing.Point(420, 591);
             this.panelOrders.Name = "panelOrders";
@@ -378,16 +378,16 @@
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
             // 
-            // label7
+            // labelNumOfOrder
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Location = new System.Drawing.Point(15, 73);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(184, 69);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "1,000";
+            this.labelNumOfOrder.AutoSize = true;
+            this.labelNumOfOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumOfOrder.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelNumOfOrder.Location = new System.Drawing.Point(15, 73);
+            this.labelNumOfOrder.Name = "labelNumOfOrder";
+            this.labelNumOfOrder.Size = new System.Drawing.Size(184, 69);
+            this.labelNumOfOrder.TabIndex = 1;
+            this.labelNumOfOrder.Text = "1,000";
             // 
             // label8
             // 
@@ -404,7 +404,7 @@
             // 
             this.panelClients.BackColor = System.Drawing.Color.Green;
             this.panelClients.Controls.Add(this.pictureBox4);
-            this.panelClients.Controls.Add(this.label9);
+            this.panelClients.Controls.Add(this.labelNumOfClient);
             this.panelClients.Controls.Add(this.label10);
             this.panelClients.Location = new System.Drawing.Point(951, 250);
             this.panelClients.Name = "panelClients";
@@ -421,16 +421,16 @@
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             // 
-            // label9
+            // labelNumOfClient
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Location = new System.Drawing.Point(15, 73);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(184, 69);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "1,000";
+            this.labelNumOfClient.AutoSize = true;
+            this.labelNumOfClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumOfClient.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelNumOfClient.Location = new System.Drawing.Point(15, 73);
+            this.labelNumOfClient.Name = "labelNumOfClient";
+            this.labelNumOfClient.Size = new System.Drawing.Size(184, 69);
+            this.labelNumOfClient.TabIndex = 1;
+            this.labelNumOfClient.Text = "1,000";
             // 
             // label10
             // 
@@ -447,7 +447,7 @@
             // 
             this.panelProducts.BackColor = System.Drawing.Color.DarkSlateGray;
             this.panelProducts.Controls.Add(this.pictureBox5);
-            this.panelProducts.Controls.Add(this.label11);
+            this.panelProducts.Controls.Add(this.labelNumOfProduct);
             this.panelProducts.Controls.Add(this.label12);
             this.panelProducts.Location = new System.Drawing.Point(1486, 250);
             this.panelProducts.Name = "panelProducts";
@@ -464,16 +464,16 @@
             this.pictureBox5.TabIndex = 2;
             this.pictureBox5.TabStop = false;
             // 
-            // label11
+            // labelNumOfProduct
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label11.Location = new System.Drawing.Point(15, 73);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(184, 69);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "1,000";
+            this.labelNumOfProduct.AutoSize = true;
+            this.labelNumOfProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumOfProduct.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelNumOfProduct.Location = new System.Drawing.Point(15, 73);
+            this.labelNumOfProduct.Name = "labelNumOfProduct";
+            this.labelNumOfProduct.Size = new System.Drawing.Size(184, 69);
+            this.labelNumOfProduct.TabIndex = 1;
+            this.labelNumOfProduct.Text = "1,000";
             // 
             // label12
             // 
@@ -490,7 +490,7 @@
             // 
             this.panelBills.BackColor = System.Drawing.Color.DarkGray;
             this.panelBills.Controls.Add(this.pictureBox6);
-            this.panelBills.Controls.Add(this.label13);
+            this.panelBills.Controls.Add(this.labelNumOfBill);
             this.panelBills.Controls.Add(this.label14);
             this.panelBills.Location = new System.Drawing.Point(951, 591);
             this.panelBills.Name = "panelBills";
@@ -507,16 +507,16 @@
             this.pictureBox6.TabIndex = 2;
             this.pictureBox6.TabStop = false;
             // 
-            // label13
+            // labelNumOfBill
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label13.Location = new System.Drawing.Point(15, 73);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(184, 69);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "1,000";
+            this.labelNumOfBill.AutoSize = true;
+            this.labelNumOfBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumOfBill.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelNumOfBill.Location = new System.Drawing.Point(15, 73);
+            this.labelNumOfBill.Name = "labelNumOfBill";
+            this.labelNumOfBill.Size = new System.Drawing.Size(184, 69);
+            this.labelNumOfBill.TabIndex = 1;
+            this.labelNumOfBill.Text = "1,000";
             // 
             // label14
             // 
@@ -597,22 +597,22 @@
         private System.Windows.Forms.Panel panelEmployees;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelNumOfEmployee;
         private System.Windows.Forms.Panel panelOrders;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelNumOfOrder;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panelClients;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelNumOfClient;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panelProducts;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelNumOfProduct;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panelBills;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelNumOfBill;
         private System.Windows.Forms.Label label14;
     }
 }

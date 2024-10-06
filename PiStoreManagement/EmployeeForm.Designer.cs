@@ -63,7 +63,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2052, 96);
+            this.panel1.Size = new System.Drawing.Size(1942, 96);
             this.panel1.TabIndex = 1;
             // 
             // label1
@@ -84,7 +84,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 96);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2052, 65);
+            this.panel3.Size = new System.Drawing.Size(1942, 65);
             this.panel3.TabIndex = 3;
             // 
             // pathLevel
@@ -281,7 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2052, 1062);
+            this.ClientSize = new System.Drawing.Size(1942, 1062);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);

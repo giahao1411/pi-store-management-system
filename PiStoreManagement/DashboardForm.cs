@@ -7,15 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUS;
 
 namespace PiStoreManagement
 {
     public partial class Dashboard : Form
     {
+        private EmployeeBUS employeeBUS = new EmployeeBUS();
+        private ClientBUS clientBUS = new ClientBUS();
+
         public Dashboard()
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            labelNumOfEmployee.Text = employeeBUS.getNumOfEmployee().ToString();
+            labelNumOfClient.Text = clientBUS.getNumOfClient().ToString();
         }
 
         private void btnEmployee_Click(object sender, EventArgs e)

@@ -3,20 +3,30 @@
   "WorkspaceRootPath": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|E:\\ASP_.Net\\Midterm\\PiStoreManagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{695DFD6A-16E7-4DD6-8ACB-A03E9143DF10}|..\\DAL\\DAL.csproj|e:\\asp_.net\\midterm\\dal\\clientdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030AD06F-AE88-45FF-B2DC-D52B69427DDA}|..\\BUS\\BUS.csproj|e:\\asp_.net\\midterm\\bus\\clientbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{030AD06F-AE88-45FF-B2DC-D52B69427DDA}|..\\BUS\\BUS.csproj|e:\\asp_.net\\midterm\\bus\\employeebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{695DFD6A-16E7-4DD6-8ACB-A03E9143DF10}|..\\DAL\\DAL.csproj|e:\\asp_.net\\midterm\\dal\\employeedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B6E2CD70-E849-4EC9-9D91-E7AFA88EAC5A}|..\\DTO\\DTO.csproj|e:\\asp_.net\\midterm\\dto\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{695DFD6A-16E7-4DD6-8ACB-A03E9143DF10}|..\\DAL\\DAL.csproj|e:\\asp_.net\\midterm\\dal\\logindal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|E:\\ASP_.Net\\Midterm\\PiStoreManagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|E:\\ASP_.Net\\Midterm\\PiStoreManagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,25 +40,102 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "ClientBUS.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\BUS\\ClientBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\ClientBUS.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\BUS\\ClientBUS.cs",
+              "RelativeToolTip": "..\\BUS\\ClientBUS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:56:19.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClientDAL.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\DAL\\ClientDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\ClientDAL.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\DAL\\ClientDAL.cs",
+              "RelativeToolTip": "..\\DAL\\ClientDAL.cs",
+              "ViewState": "AgIAABQAAACAmZmZmZkGwCUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:53:22.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClientDTO.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\DTO\\ClientDTO.cs",
+              "RelativeDocumentMoniker": "..\\DTO\\ClientDTO.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\DTO\\ClientDTO.cs",
+              "RelativeToolTip": "..\\DTO\\ClientDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:51:52.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginDAL.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\DAL\\LoginDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\LoginDAL.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\DAL\\LoginDAL.cs",
+              "RelativeToolTip": "..\\DAL\\LoginDAL.cs",
+              "ViewState": "AgIAAAoAAADAlZmZmZkVwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:48:14.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "DashboardForm.cs",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
               "RelativeDocumentMoniker": "DashboardForm.cs",
               "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
               "RelativeToolTip": "DashboardForm.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAgwBcAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAD4MDMzMzMrwBcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-05T17:11:16.374Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
+              "Title": "EmployeeBUS.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\BUS\\EmployeeBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\EmployeeBUS.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\BUS\\EmployeeBUS.cs",
+              "RelativeToolTip": "..\\BUS\\EmployeeBUS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:40:50.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeDAL.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\DAL\\EmployeeDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\EmployeeDAL.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\DAL\\EmployeeDAL.cs",
+              "RelativeToolTip": "..\\DAL\\EmployeeDAL.cs",
+              "ViewState": "AgIAAAcAAADgYWZmZqYowA4AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T12:24:43.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "DashboardForm.cs [Design]",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
               "RelativeDocumentMoniker": "DashboardForm.cs",
@@ -60,38 +147,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EmployeeForm.cs",
-              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
-              "RelativeDocumentMoniker": "EmployeeForm.cs",
-              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
-              "RelativeToolTip": "EmployeeForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T11:15:15.177Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EmployeeForm.cs [Design]",
-              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
-              "RelativeDocumentMoniker": "EmployeeForm.cs",
-              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs [Design]",
-              "RelativeToolTip": "EmployeeForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T11:05:37.273Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-06T08:46:09.517Z",
               "EditorCaption": ""
