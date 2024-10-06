@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace PiStoreManagement
 {
-    public partial class EmployeeForm : Form
+    public partial class Employee : Form
     {
-        public EmployeeForm()
+        public Employee()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

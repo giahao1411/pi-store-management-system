@@ -19,3 +19,4 @@ E:\ASP_.Net\Midterm\PiStoreManagement\obj\Debug\PiStoreManagement.csproj.CoreCom
 E:\ASP_.Net\Midterm\PiStoreManagement\obj\Debug\PiStoreM.106AEB45.Up2Date
 E:\ASP_.Net\Midterm\PiStoreManagement\obj\Debug\PiStoreManagement.exe
 E:\ASP_.Net\Midterm\PiStoreManagement\obj\Debug\PiStoreManagement.pdb
+E:\ASP_.Net\Midterm\PiStoreManagement\obj\Debug\PiStoreManagement.Employee.resources

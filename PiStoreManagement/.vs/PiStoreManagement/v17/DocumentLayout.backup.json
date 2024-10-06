@@ -3,19 +3,23 @@
   "WorkspaceRootPath": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:employeeform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|E:\\ASP_.Net\\Midterm\\PiStoreManagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\dashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:dashboardform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|e:\\asp_.net\\midterm\\pistoremanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|E:\\ASP_.Net\\Midterm\\PiStoreManagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0094C8F4-33FB-4C06-A168-210535C8343F}|PiStoreManagement.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -26,17 +30,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DashboardForm.cs",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
               "RelativeDocumentMoniker": "DashboardForm.cs",
-              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs*",
-              "RelativeToolTip": "DashboardForm.cs*",
-              "ViewState": "AgIAACMAAAAAAAAAAAA2wDYAAAAAAAAAAAAAAA==",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
+              "RelativeToolTip": "DashboardForm.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAgwBcAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-05T17:11:16.374Z",
               "IsPinned": true,
@@ -44,38 +48,50 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "DashboardForm.cs [Design]",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs",
               "RelativeDocumentMoniker": "DashboardForm.cs",
-              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs [Design]*",
-              "RelativeToolTip": "DashboardForm.cs [Design]*",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.cs [Design]",
+              "RelativeToolTip": "DashboardForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-06T09:13:37.002Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DashboardForm.Designer.cs",
-              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.Designer.cs",
-              "RelativeDocumentMoniker": "DashboardForm.Designer.cs",
-              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\DashboardForm.Designer.cs*",
-              "RelativeToolTip": "DashboardForm.Designer.cs*",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAEwHcAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "EmployeeForm.cs",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
+              "RelativeDocumentMoniker": "EmployeeForm.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
+              "RelativeToolTip": "EmployeeForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T09:13:21.206Z",
+              "WhenOpened": "2024-10-06T11:15:15.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "EmployeeForm.cs [Design]",
+              "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs",
+              "RelativeDocumentMoniker": "EmployeeForm.cs",
+              "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\EmployeeForm.cs [Design]",
+              "RelativeToolTip": "EmployeeForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T11:05:37.273Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "E:\\ASP_.Net\\Midterm\\PiStoreManagement\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-06T08:46:09.517Z",
               "EditorCaption": ""

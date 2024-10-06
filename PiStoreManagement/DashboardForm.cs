@@ -20,32 +20,33 @@ namespace PiStoreManagement
 
         private void btnEmployee_Click(object sender, EventArgs e)
         {
-
+            Employee employee = new Employee();
+            employee.Show();
         }
 
         private void btnClient_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnBill_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnAnalytics_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
