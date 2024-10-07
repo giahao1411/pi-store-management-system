@@ -1,9 +1,0 @@
-E:\ASP_.Net\Midterm\DTO\bin\Debug\DTO.dll
-E:\ASP_.Net\Midterm\DTO\bin\Debug\DTO.pdb
-E:\ASP_.Net\Midterm\DTO\bin\Debug\System.Data.SqlClient.dll
-E:\ASP_.Net\Midterm\DTO\bin\Debug\System.Data.SqlClient.xml
-E:\ASP_.Net\Midterm\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
-E:\ASP_.Net\Midterm\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
-E:\ASP_.Net\Midterm\DTO\obj\Debug\DTO.csproj.Up2Date
-E:\ASP_.Net\Midterm\DTO\obj\Debug\DTO.dll
-E:\ASP_.Net\Midterm\DTO\obj\Debug\DTO.pdb
