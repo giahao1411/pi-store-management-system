@@ -109,3 +109,5 @@ INSERT INTO Account values
 	('EM001', 'admin', 'admin123', 0);
 
 SELECT COUNT(*) FROM Employee
+
+SELECT HireDate FROM Employee

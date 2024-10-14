@@ -34,7 +34,7 @@ namespace DAL
                         phone = reader["Phone"].ToString(),
                         address = reader["Address"].ToString(),
                         salary = (double)reader["Salary"],
-                        hireDate = reader["HireDate"].ToString()
+                        hireDate = (DateTime)reader["HireDate"]
                     };
 
                     employeeList.Add(employeeDTO);

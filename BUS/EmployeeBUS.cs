@@ -16,5 +16,10 @@ namespace BUS
         {
             return employeeDAL.countEmployee();
         }
+
+        public List<EmployeeDTO> getList()
+        {
+            return employeeDAL.getEmployyeeList();
+        }
     }
 }
