@@ -41,10 +41,113 @@ namespace DAL
                 }
                 return employeeList;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool insert(EmployeeDTO employeeDTO)
+        {
+            string query = "INSERT INTO Employee VALUES (@Id, @Name, @Email, @Phone, @Address, @Salary, @HireDate)";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", employeeDTO.id);
+                cmd.Parameters.AddWithValue("@Name", employeeDTO.name);
+                cmd.Parameters.AddWithValue("@Email", employeeDTO.email);
+                cmd.Parameters.AddWithValue("@Phone", employeeDTO.phone);
+                cmd.Parameters.AddWithValue("@Address", employeeDTO.address);
+                cmd.Parameters.AddWithValue("@Salary", employeeDTO.salary);
+                cmd.Parameters.AddWithValue("@HireDate", employeeDTO.hireDate);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+
+            } catch (SqlException ex)
+            {
+                Console.WriteLine (ex.Message);
+                return false;
+            } finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool update(EmployeeDTO employeeDTO) 
+        {
+            string query = "UPDATE Employee SET Name = @Name, Email = @Email, Phone = @Phone, Address = @Address, Salary = @Salary, HireDate = @HireDate WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", employeeDTO.id);
+                cmd.Parameters.AddWithValue("@Name", employeeDTO.name);
+                cmd.Parameters.AddWithValue("@Email", employeeDTO.email);
+                cmd.Parameters.AddWithValue("@Phone", employeeDTO.phone);
+                cmd.Parameters.AddWithValue("@Address", employeeDTO.address);
+                cmd.Parameters.AddWithValue("@Salary", employeeDTO.salary);
+                cmd.Parameters.AddWithValue("@HireDate", employeeDTO.hireDate);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool delete(EmployeeDTO employeeDTO)
+        {
+            string query = "DELETE FROM Employee WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", employeeDTO.id);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
             finally
             {
@@ -67,7 +170,7 @@ namespace DAL
 
                 return (int)cmd.ExecuteScalar();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return 0;

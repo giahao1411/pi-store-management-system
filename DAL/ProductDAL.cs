@@ -40,7 +40,7 @@ namespace DAL
                 }
                 return productList;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;

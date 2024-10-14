@@ -26,7 +26,7 @@ namespace DAL
 
                 return result == 1;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;

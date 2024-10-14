@@ -39,7 +39,7 @@ namespace DAL
                 }
                 return orderList;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.ToString());
                 return null;
@@ -66,7 +66,7 @@ namespace DAL
 
                 return (int)cmd.ExecuteScalar();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return 0;

@@ -42,7 +42,7 @@ namespace DAL
                 }  
                 return billList;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
@@ -68,7 +68,7 @@ namespace DAL
 
                 return (int)cmd.ExecuteScalar();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return 0;
