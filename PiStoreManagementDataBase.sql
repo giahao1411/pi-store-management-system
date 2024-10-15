@@ -102,12 +102,12 @@ SELECT * FROM Orders
 SELECT * FROM OrderItem
 SELECT * FROM Bill
 
-INSERT INTO Employee values
+INSERT INTO Employee VALUES
 	('EM001', N'Trần Gia Hào', 'trangiahao498@gmail.com', '0886684075', N'213/21 Lê Quang Sung, P6, Q6, Thành phố Hồ Chí Minh' ,100, GETDATE());
 
-INSERT INTO Account values
+INSERT INTO Account VALUES
 	('EM001', 'admin', 'admin123', 0);
 
-SELECT COUNT(*) FROM Employee
-
-SELECT HireDate FROM Employee
+INSERT INTO Client VALUES
+	('CL001', N'An Kung', 'AnKung@armyspy.com', '0233639601', N'3612 Red Maple Drive, City Of Commerce, CA 90040'),
+	('CL002', N'Benjamin T. Gray', 'BenjaminTGray@teleworm.us', '02037312403', N'3961 Asylum AvenueDanbury, CT 06810')

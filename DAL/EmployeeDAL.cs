@@ -79,7 +79,7 @@ namespace DAL
 
             } catch (SqlException ex)
             {
-                Console.WriteLine (ex.Message);
+                Console.WriteLine(ex.Message);
                 return false;
             } finally
             {

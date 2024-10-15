@@ -36,7 +36,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridClient = new System.Windows.Forms.DataGridView();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -46,7 +46,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnExportCSV = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.gridClient)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -76,6 +77,7 @@
             this.btnSearch.TabIndex = 46;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -87,6 +89,7 @@
             this.btnDelete.TabIndex = 45;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -98,6 +101,7 @@
             this.btnUpdate.TabIndex = 44;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -109,6 +113,7 @@
             this.btnAdd.TabIndex = 43;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
@@ -120,6 +125,7 @@
             this.btnSave.TabIndex = 42;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -131,16 +137,18 @@
             this.btnCancel.TabIndex = 41;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // dataGridView1
+            // gridClient
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(387, 355);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(994, 508);
-            this.dataGridView1.TabIndex = 40;
+            this.gridClient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridClient.Location = new System.Drawing.Point(387, 355);
+            this.gridClient.Name = "gridClient";
+            this.gridClient.RowHeadersWidth = 51;
+            this.gridClient.RowTemplate.Height = 24;
+            this.gridClient.Size = new System.Drawing.Size(994, 508);
+            this.gridClient.TabIndex = 40;
+            this.gridClient.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridClient_CellClick);
             // 
             // txtAddress
             // 
@@ -222,11 +230,24 @@
             this.label2.TabIndex = 29;
             this.label2.Text = "ID";
             // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnExportCSV.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportCSV.Location = new System.Drawing.Point(1482, 811);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(158, 52);
+            this.btnExportCSV.TabIndex = 51;
+            this.btnExportCSV.Text = "Export CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = false;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1506, 1004);
+            this.ClientSize = new System.Drawing.Size(1816, 1004);
+            this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSearch);
@@ -235,7 +256,7 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridClient);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtEmail);
@@ -248,7 +269,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ClientForm";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridClient)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,7 +285,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridClient;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;
@@ -274,5 +295,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnExportCSV;
     }
 }
