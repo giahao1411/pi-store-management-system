@@ -18,7 +18,8 @@ namespace PiStoreManagement
         public EmployeeForm()
         {
             InitializeComponent();
-            formload();   
+            formload();
+            gridEmployee.MultiSelect = false;
 
             // set min date for date time picker
             dtpHireDate.MinDate = new DateTime(2020, 1, 1);
@@ -96,6 +97,7 @@ namespace PiStoreManagement
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
+            gridEmployee.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -259,6 +261,7 @@ namespace PiStoreManagement
             txtAddress.Enabled = false;
             txtSalary.Enabled = false;
             dtpHireDate.Enabled = false;
+            gridEmployee.Enabled = true;
 
             btnAdd.Enabled = true;
             btnUpdate.Enabled = false;
@@ -281,6 +284,8 @@ namespace PiStoreManagement
             gridEmployee.Columns[4].HeaderText = "Address";
             gridEmployee.Columns[5].HeaderText = "Salary";
             gridEmployee.Columns[6].HeaderText = "Hire Date";
+
+            gridEmployee.Columns[5].Width = 93;
         }
 
         private void enable()
@@ -295,17 +300,29 @@ namespace PiStoreManagement
 
         private string idGenerator()
         {
-            int idNumber = currentEmployeeList.Count() + 1;
+            int maxIdNumber = currentEmployeeList
+                .Select(emp => int.Parse(emp.id.Substring(2)))
+                .DefaultIfEmpty(0)
+                .Max();
 
-            if (idNumber > 100)
+            int newIdNumber = maxIdNumber + 1;
+            string newId;
+
+            // Generate the new ID based on the new numeric value
+            if (newIdNumber >= 100)
             {
-                return "EM" + idNumber.ToString();
+                newId = "EM" + newIdNumber.ToString();
             }
-            if (idNumber > 10)
+            else if (newIdNumber >= 10)
             {
-                return "EM0" + idNumber.ToString();
+                newId = "EM0" + newIdNumber.ToString();
             }
-            return "EM00" + idNumber.ToString();
+            else
+            {
+                newId = "EM00" + newIdNumber.ToString();
+            }
+
+            return newId;
         }
 
         private bool regexEmail(string email)

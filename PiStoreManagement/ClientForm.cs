@@ -20,6 +20,7 @@ namespace PiStoreManagement
         {
             InitializeComponent();
             formload();
+            gridClient.MultiSelect = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -67,12 +68,13 @@ namespace PiStoreManagement
             btnSave.Enabled = true;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
+            gridClient.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             ClientDTO deleteClient = currentClientList.FirstOrDefault(cli => cli.id == txtID.Text);
-            if(deleteClient != null)
+            if (deleteClient != null)
             {
                 DialogResult result = MessageBox.Show("Are you sure want to delete this client?", "Delete Client", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
@@ -240,6 +242,7 @@ namespace PiStoreManagement
             txtEmail.Enabled = false;
             txtPhone.Enabled = false;
             txtAddress.Enabled = false;
+            gridClient.Enabled = true;
 
             btnAdd.Enabled = true;
             btnUpdate.Enabled = false;
@@ -276,17 +279,29 @@ namespace PiStoreManagement
 
         private string idGenerator()
         {
-            int idNumber = currentClientList.Count() + 1;
+            int maxIdNumber = currentClientList
+                .Select(cli => int.Parse(cli.id.Substring(2)))
+                .DefaultIfEmpty(0)
+                .Max();
 
-            if (idNumber > 100)
+            int newIdNumber = maxIdNumber + 1;
+            string newId;
+
+            // Generate the new ID based on the new numeric value
+            if (newIdNumber >= 100)
             {
-                return "CL" + idNumber.ToString();
-            } 
-            if (idNumber > 10)
-            {
-                return "CL0" + idNumber.ToString();
+                newId = "CL" + newIdNumber.ToString();
             }
-            return "CL00" + idNumber.ToString();
+            else if (newIdNumber >= 10)
+            {
+                newId = "CL0" + newIdNumber.ToString();
+            }
+            else
+            {
+                newId = "CL00" + newIdNumber.ToString();
+            }
+
+            return newId;
         }
 
         private bool regexEmail(string email)
@@ -306,11 +321,11 @@ namespace PiStoreManagement
         private List<ClientDTO> searchClient(string searchText)
         {
             return currentClientList.Where(cli =>
-            (cli.id.Contains(searchText)) ||
-            (cli.name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
-            (cli.email.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
-            (cli.phone.Contains(searchText)) ||
-            (cli.address.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+                (cli.id.Contains(searchText)) ||
+                (cli.name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (cli.email.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (cli.phone.Contains(searchText)) ||
+                (cli.address.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
             ).ToList();
         }
     }

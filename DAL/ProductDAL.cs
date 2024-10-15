@@ -54,9 +54,107 @@ namespace DAL
             }
         }
 
+        public bool insert(ProductDTO productDTO)
+        {
+            string query = "INSERT INTO Product VALUES (@Id, @Name, @Description, @Price, @Quantity)";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", productDTO.id);
+                cmd.Parameters.AddWithValue("@Name", productDTO.name);
+                cmd.Parameters.AddWithValue("@Description", productDTO.description);
+                cmd.Parameters.AddWithValue("@Price", productDTO.price);
+                cmd.Parameters.AddWithValue("@Quantity", productDTO.quantity);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;  
+            } 
+            catch(SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if(conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool update(ProductDTO productDTO)
+        {
+            string query = "UPDATE Product SET Name = @Name, Description = @Description, Price = @Price, Quantity = @Quantity WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", productDTO.id);
+                cmd.Parameters.AddWithValue("@Name", productDTO.name);
+                cmd.Parameters.AddWithValue("@Description", productDTO.description);
+                cmd.Parameters.AddWithValue("@Price", productDTO.price);
+                cmd.Parameters.AddWithValue("@Quantity", productDTO.quantity);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool delete(ProductDTO productDTO)
+        {
+            string query = "DELETE FROM Product WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", productDTO.id);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         public int countProduct()
         {
-            string query = "SELECT COUNT(*) FROM Prodcut";
+            string query = "SELECT COUNT(*) FROM Product";
             SqlConnection conn = null;
 
             try

@@ -29,24 +29,25 @@
         private void InitializeComponent()
         {
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.txtSalary = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridProduct = new System.Windows.Forms.DataGridView();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.rtxtDescription = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnExportCSV = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProduct)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -57,13 +58,13 @@
             this.txtSearch.Size = new System.Drawing.Size(743, 27);
             this.txtSearch.TabIndex = 50;
             // 
-            // txtSalary
+            // txtPrice
             // 
-            this.txtSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSalary.Location = new System.Drawing.Point(458, 133);
-            this.txtSalary.Name = "txtSalary";
-            this.txtSalary.Size = new System.Drawing.Size(289, 27);
-            this.txtSalary.TabIndex = 48;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(458, 133);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(289, 27);
+            this.txtPrice.TabIndex = 48;
             // 
             // btnSearch
             // 
@@ -74,6 +75,7 @@
             this.btnSearch.TabIndex = 46;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDelete
             // 
@@ -85,6 +87,7 @@
             this.btnDelete.TabIndex = 45;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -96,6 +99,7 @@
             this.btnUpdate.TabIndex = 44;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -107,6 +111,7 @@
             this.btnAdd.TabIndex = 43;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
@@ -118,6 +123,7 @@
             this.btnSave.TabIndex = 42;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -129,16 +135,18 @@
             this.btnCancel.TabIndex = 41;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // dataGridView1
+            // gridProduct
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(384, 477);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(994, 390);
-            this.dataGridView1.TabIndex = 40;
+            this.gridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridProduct.Location = new System.Drawing.Point(384, 477);
+            this.gridProduct.Name = "gridProduct";
+            this.gridProduct.RowHeadersWidth = 51;
+            this.gridProduct.RowTemplate.Height = 24;
+            this.gridProduct.Size = new System.Drawing.Size(994, 390);
+            this.gridProduct.TabIndex = 40;
+            this.gridProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProduct_CellClick);
             // 
             // txtName
             // 
@@ -156,15 +164,15 @@
             this.txtID.Size = new System.Drawing.Size(157, 27);
             this.txtID.TabIndex = 35;
             // 
-            // txtPrice
+            // label
             // 
-            this.txtPrice.AutoSize = true;
-            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(380, 136);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(53, 20);
-            this.txtPrice.TabIndex = 32;
-            this.txtPrice.Text = "Price";
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(380, 136);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(53, 20);
+            this.label.TabIndex = 32;
+            this.label.Text = "Price";
             // 
             // label3
             // 
@@ -223,33 +231,46 @@
             this.label6.TabIndex = 54;
             this.label6.Text = "Description";
             // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnExportCSV.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportCSV.Location = new System.Drawing.Point(1484, 815);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(158, 52);
+            this.btnExportCSV.TabIndex = 56;
+            this.btnExportCSV.Text = "Export CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = false;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1556, 971);
+            this.ClientSize = new System.Drawing.Size(1384, 776);
+            this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.rtxtDescription);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtQuantity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.txtSalary);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridProduct);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductForm";
             this.Text = "Product";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProduct)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,22 +279,23 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.TextBox txtSalary;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridProduct;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.Label txtPrice;
+        private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox rtxtDescription;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnExportCSV;
     }
 }
