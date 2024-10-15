@@ -67,7 +67,10 @@ namespace PiStoreManagement
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            enable();
+            btnSave.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -82,7 +85,36 @@ namespace PiStoreManagement
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPhone.Text) && !string.IsNullOrEmpty(txtAddress.Text))
+            {
+                if (regexEmail(txtEmail.Text) && regexPhoneNumber(txtPhone.Text))
+                {
+                    ClientDTO updateClient = currentClientList.FirstOrDefault(cli => cli.id == txtID.Text);
+                    if(updateClient != null)
+                    {
+                        updateClient.name = txtName.Text;
+                        updateClient.email = txtEmail.Text;
+                        updateClient.phone = txtPhone.Text;
+                        updateClient.address = txtAddress.Text;
+                    }
 
+                    bool isSuccess = ClientBUS.updateClient(updateClient);
+
+                    if (isSuccess)
+                    {
+                        MessageBox.Show("Client update successfully");
+                        formload();
+                    }
+                    else
+                    {
+                        MessageBox.Show("An rrror occurr. Please try again");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input. PLease try again");
+                }
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
