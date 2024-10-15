@@ -50,6 +50,7 @@
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.dtpHireDate = new System.Windows.Forms.DateTimePicker();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnExportCSV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridEmployee)).BeginInit();
             this.SuspendLayout();
             // 
@@ -271,11 +272,24 @@
             this.txtSearch.Size = new System.Drawing.Size(743, 27);
             this.txtSearch.TabIndex = 28;
             // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnExportCSV.Font = new System.Drawing.Font("Lucida Bright", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportCSV.Location = new System.Drawing.Point(1479, 837);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(158, 52);
+            this.btnExportCSV.TabIndex = 29;
+            this.btnExportCSV.Text = "Export CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = false;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1555, 965);
+            this.ClientSize = new System.Drawing.Size(1758, 965);
+            this.Controls.Add(this.btnExportCSV);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dtpHireDate);
             this.Controls.Add(this.txtSalary);
@@ -331,5 +345,6 @@
         private System.Windows.Forms.TextBox txtSalary;
         private System.Windows.Forms.DateTimePicker dtpHireDate;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnExportCSV;
     }
 }

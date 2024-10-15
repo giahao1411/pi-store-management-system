@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
+using System.Text;
 
 namespace PiStoreManagement
 {
@@ -162,7 +164,83 @@ namespace PiStoreManagement
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                string searchText = txtSearch.Text.Trim();
 
+                List<EmployeeDTO> searchResult = searchEmployee(searchText);
+
+                gridEmployee.DataSource = searchResult;
+            } 
+            else
+            {
+                formload();
+            }
+        }
+
+        private void btnExportCSV_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "CSV files (*.csv)|*.csv";
+                sfd.FileName = "employee.csv";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                        {
+                            // write column headers
+                            for (int i = 0; i < gridEmployee.Columns.Count; i++)
+                            {
+                                sw.Write(gridEmployee.Columns[i].HeaderText);
+                                if (i < gridEmployee.Columns.Count - 1)
+                                {
+                                    sw.Write(",");
+                                }
+                            }
+                            sw.WriteLine();
+
+                            // write row data
+                            foreach (DataGridViewRow row in gridEmployee.Rows)
+                            {
+                                if (!row.IsNewRow)
+                                {
+                                    for (int i = 0; i < gridEmployee.Columns.Count; i++)
+                                    {
+                                        string cellValue = row.Cells[i].Value?.ToString();
+
+                                        // handle the DateTime datatype
+                                        if (row.Cells[i].Value is DateTime dateValue)
+                                        {
+                                            cellValue = dateValue.ToString("MM/dd/yyyy");
+                                        }
+
+                                        // handle if has horizontal and vertical space in Column cell
+                                        if (cellValue != null && (cellValue.Contains(",") || cellValue.Contains("\n") || cellValue.Contains("\r"))) 
+                                        {
+                                            cellValue = "\"" + cellValue.Replace("\"", "\"\"") + "\"";
+                                        }
+                                        sw.Write(cellValue);
+
+                                        if (i < gridEmployee.Columns.Count - 1)
+                                        {
+                                            sw.Write(",");
+                                        }
+                                    }
+                                    sw.WriteLine();
+                                }
+                            }
+                        }
+                        MessageBox.Show("Data exported successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void formload()
@@ -254,8 +332,21 @@ namespace PiStoreManagement
         private bool checkDate(DateTime date)
         {
             DateTime tomorrow = DateTime.Today.AddDays(1);
-            
+
             return date.Date < tomorrow;
+        }
+
+        private List<EmployeeDTO> searchEmployee(string searchText)
+        {
+            return currentEmployeeList.Where(emp =>
+                (emp.id.Contains(searchText)) ||
+                (emp.name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (emp.email.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (emp.phone.Contains(searchText)) ||
+                (emp.address.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (emp.salary.ToString().Contains(searchText)) ||
+                (emp.hireDate.ToString("MM/dd/yyyy").Contains(searchText))
+            ).ToList();
         }
     }
 }
