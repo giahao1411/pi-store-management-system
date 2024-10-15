@@ -75,7 +75,24 @@ namespace PiStoreManagement
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            ClientDTO deleteClient = currentClientList.FirstOrDefault(cli => cli.id == txtID.Text);
+            if(deleteClient != null)
+            {
+                DialogResult result = MessageBox.Show("Are you sure want to delete this client?", "Delete Client", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    bool isSuccess = ClientBUS.deleteClient(deleteClient);
+                    if (isSuccess)
+                    {
+                        MessageBox.Show("Client deleted successfully");
+                        formload();
+                    } 
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again");
+                    }
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

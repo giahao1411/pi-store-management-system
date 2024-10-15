@@ -114,7 +114,7 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An rrror occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again");
                     }
                 }
             }
