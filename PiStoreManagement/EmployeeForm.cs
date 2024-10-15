@@ -19,7 +19,6 @@ namespace PiStoreManagement
         {
             InitializeComponent();
             formload();   
-            displayEmployeeList();
 
             // set min date for date time picker
             dtpHireDate.MinDate = new DateTime(2020, 1, 1);
@@ -81,7 +80,7 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An rrror occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again");
                     }
                 }
                 else

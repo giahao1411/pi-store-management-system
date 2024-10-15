@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Security.Permissions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS;
@@ -23,12 +24,45 @@ namespace PiStoreManagement
         {
             InitializeComponent();
             formload();
-            displayClientList();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            txtID.Text = idGenerator();
 
+            enable();
+            btnCancel.Enabled = true;
+
+            if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtEmail.Text) && !string.IsNullOrEmpty(txtPhone.Text) && !string.IsNullOrEmpty(txtAddress.Text))
+            {
+                if (regexEmail(txtEmail.Text) && regexPhoneNumber(txtPhone.Text))
+                {
+                    ClientDTO newClient = new ClientDTO
+                    {
+                        id = txtID.Text,
+                        name = txtName.Text,
+                        email = txtEmail.Text,
+                        phone = txtPhone.Text,
+                        address = txtAddress.Text
+                    };
+
+                    bool isSuccess = ClientBUS.addClient(newClient);
+
+                    if (isSuccess)
+                    {
+                        MessageBox.Show("Client addedd successfully");
+                        formload();
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again");
+                    }
+                } 
+                else
+                {
+                    MessageBox.Show("Invalid input. PLease try again");
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -102,6 +136,8 @@ namespace PiStoreManagement
             btnDelete.Enabled = false;
             btnCancel.Enabled = false;
             btnSave.Enabled = false;
+
+            displayClientList();
         }
 
         private void displayClientList()
@@ -118,7 +154,43 @@ namespace PiStoreManagement
             gridClient.Columns[1].Width = 133;
             gridClient.Columns[2].Width = 160;
             gridClient.Columns[4].Width = 200;
+        }
 
+        private void enable()
+        {
+            txtName.Enabled = true;
+            txtEmail.Enabled = true;
+            txtPhone.Enabled = true;
+            txtAddress.Enabled = true;
+        }
+
+        private string idGenerator()
+        {
+            int idNumber = currentClientList.Count() + 1;
+
+            if (idNumber > 100)
+            {
+                return "CL" + idNumber.ToString();
+            } 
+            if (idNumber > 10)
+            {
+                return "CL0" + idNumber.ToString();
+            }
+            return "CL00" + idNumber.ToString();
+        }
+
+        private bool regexEmail(string email)
+        {
+            string regexEmail = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+
+            return Regex.IsMatch(email, regexEmail);
+        }
+
+        private bool regexPhoneNumber(string phone)
+        {
+            string regexPhoneNumber = @"^[\+]?[0-9]{0,3}\W?[0]?[0-9]{9}$";
+
+            return Regex.IsMatch(phone, regexPhoneNumber, RegexOptions.IgnoreCase) && phone.Length == 10;
         }
     }
 }
