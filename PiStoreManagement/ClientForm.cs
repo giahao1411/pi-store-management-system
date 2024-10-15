@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -42,7 +43,7 @@ namespace PiStoreManagement
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
+            formload();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -62,7 +63,24 @@ namespace PiStoreManagement
 
         private void gridClient_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0)
+            {
+                gridClient.Focus();
+                gridClient.Rows[e.RowIndex].Selected = true;
 
+                var selectedRow = gridClient.SelectedRows[0];
+
+                txtID.Text = selectedRow.Cells[0].Value.ToString();
+                txtName.Text = selectedRow.Cells[1].Value.ToString();
+                txtEmail.Text = selectedRow.Cells[2].Value.ToString();
+                txtPhone.Text = selectedRow.Cells[3].Value.ToString();
+                txtAddress.Text = selectedRow.Cells[4].Value.ToString();
+
+                btnAdd.Enabled = false;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                btnCancel.Enabled = true;
+            }
         }
 
         private void formload()
