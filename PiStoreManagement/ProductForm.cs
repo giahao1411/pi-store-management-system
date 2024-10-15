@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using BUS;
 using DTO;
+using System.Net.Mail;
 
 namespace PiStoreManagement
 {
@@ -152,7 +149,61 @@ namespace PiStoreManagement
 
         private void btnExportCSV_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "CSV files (*.csv)|*.csv";
+                sfd.FileName = "product.csv";
 
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                        {
+                            // write column headers
+                            for (int i = 0; i < gridProduct.Columns.Count; i++)
+                            {
+                                sw.Write(gridProduct.Columns[i].HeaderText);
+                                if (i < gridProduct.Columns.Count - 1)
+                                {
+                                    sw.Write(",");
+                                }
+                            }
+                            sw.WriteLine();
+
+                            // write row data
+                            foreach (DataGridViewRow row in gridProduct.Rows)
+                            {
+                                if (!row.IsNewRow)
+                                {
+                                    for (int i = 0; i < gridProduct.Columns.Count; i++)
+                                    {
+                                        string cellValue = row.Cells[i].Value?.ToString();
+
+                                        // handle if has horizontal and vertical space in column cell
+                                        if (cellValue != null && (cellValue.Contains(",") || cellValue.Contains("\n") || cellValue.Contains("\r")))
+                                        {
+                                            cellValue = "\"" + cellValue.Replace("\"", "\"\"") + "\"";
+                                        }
+                                        sw.Write(cellValue);
+
+                                        if (i < gridProduct.Columns.Count - 1)
+                                        {
+                                            sw.Write(",");
+                                        }
+                                    }
+                                    sw.WriteLine();
+                                }
+                            }
+                        }
+                        MessageBox.Show("Data exported successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void gridProduct_CellClick(object sender, DataGridViewCellEventArgs e)
