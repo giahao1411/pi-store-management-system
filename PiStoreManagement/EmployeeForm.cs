@@ -80,12 +80,12 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An error occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid input. Please try again");
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An error occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -150,13 +150,13 @@ namespace PiStoreManagement
                         }
                         else
                         {
-                            MessageBox.Show("An rrror occurr. Please try again");
+                            MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid input. Please try again");
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

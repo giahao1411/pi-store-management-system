@@ -55,12 +55,12 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An error occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 } 
                 else
                 {
-                    MessageBox.Show("Invalid input. PLease try again");
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -89,7 +89,7 @@ namespace PiStoreManagement
                     } 
                     else
                     {
-                        MessageBox.Show("An error occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -124,19 +124,30 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An rrror occurr. Please try again");
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Invalid input. PLease try again");
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                string searchText = txtSearch.Text.Trim();
 
+                List<ClientDTO> searchResult = searchClient(searchText);
+
+                gridClient.DataSource = searchResult;
+            } 
+            else
+            {
+                formload();
+            }
         }
 
         private void btnExportCSV_Click(object sender, EventArgs e)
@@ -240,6 +251,17 @@ namespace PiStoreManagement
             string regexPhoneNumber = @"^[\+]?[0-9]{0,3}\W?[0]?[0-9]{9}$";
 
             return Regex.IsMatch(phone, regexPhoneNumber, RegexOptions.IgnoreCase) && phone.Length == 10;
+        }
+
+        private List<ClientDTO> searchClient(string searchText)
+        {
+            return currentClientList.Where(cli =>
+            (cli.id.Contains(searchText)) ||
+            (cli.name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+            (cli.email.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+            (cli.phone.Contains(searchText)) ||
+            (cli.address.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0)
+            ).ToList();
         }
     }
 }
