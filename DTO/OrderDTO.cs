@@ -11,7 +11,7 @@ namespace DTO
         public string id { get; set; }
         public string clientID { get; set; }
         public string employeeID { get; set; }
-        public string orderDate { get; set; }
+        public DateTime orderDate { get; set; }
         public double totalPrice { get; set; }
     }
 }

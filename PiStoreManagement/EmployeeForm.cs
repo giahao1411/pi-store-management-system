@@ -42,7 +42,6 @@ namespace PiStoreManagement
                 txtSalary.Text = selectedRow.Cells[5].Value.ToString();
                 dtpHireDate.Text = selectedRow.Cells[6].Value.ToString();
 
-
                 btnAdd.Enabled = false;
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;

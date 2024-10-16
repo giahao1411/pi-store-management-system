@@ -76,12 +76,13 @@ namespace DAL
                 int result = cmd.ExecuteNonQuery();
 
                 return result > 0;
-
-            } catch (SqlException ex)
+            } 
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 return false;
-            } finally
+            } 
+            finally
             {
                 if (conn != null)
                 {

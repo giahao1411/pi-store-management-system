@@ -1,43 +1,48 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using DTO;
+using System.Web;
+using System.Xml.XPath;
 
 namespace DAL
 {
-    public class OrderDAL
+    public class OrderItemDAL
     {
         private Connection dbConn = new Connection();
 
-        public List<OrderDTO> getOrderList()
+        public List<OrderItemDTO> getOrderItemList(string orderID)
         {
             SqlConnection conn = null;
-            string query = "SELECT * FROM Orders";
-            List<OrderDTO> orderList = new List<OrderDTO>();
+            string query = "SELECT * FROM OrderItem WHERE OrderID = @Id";
+            List<OrderItemDTO> orderItemList = new List<OrderItemDTO>();
 
             try
             {
                 conn = dbConn.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", orderID);
+
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    OrderDTO orderDTO = new OrderDTO
+                    OrderItemDTO orderItemDTO = new OrderItemDTO
                     {
-                        id = reader["ID"].ToString(),
-                        clientID = reader["ClientID"].ToString(),
-                        employeeID = reader["EmployeeID"].ToString(),
-                        orderDate = (DateTime)reader["OrderDate"],
-                        totalPrice = (double)reader["TotalPrice"]
+                       id = reader["ID"].ToString(),
+                       orderID = reader["OrderID"].ToString(),
+                       productID = reader["ProductID"].ToString(),
+                       quantity = (int)reader["Quantity"]
                     };
 
-                    orderList.Add(orderDTO);
+                    orderItemList.Add(orderItemDTO);
                 }
-                return orderList;
+                return orderItemList;
             }
             catch (SqlException ex)
             {
@@ -54,9 +59,9 @@ namespace DAL
             }
         }
 
-        public bool insert(OrderDTO orderDTO)
+        public bool insert(OrderItemDTO orderItemDTO)
         {
-            string query = "INSERT INTO Orders VALUES (@Id, @ClientId, @EmployeeId, @OrderDate, @TotalPrice)";
+            string query = "INSERT INTO OrderItem VALUES (@Id, @OrderID, @ProductID, @Quantity)";
             SqlConnection conn = null;
 
             try
@@ -64,16 +69,47 @@ namespace DAL
                 conn = dbConn.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Id", orderDTO.id);
-                cmd.Parameters.AddWithValue("@ClientId", orderDTO.clientID);
-                cmd.Parameters.AddWithValue("@EmployeeId", orderDTO.employeeID);
-                cmd.Parameters.AddWithValue("@OrderDate", orderDTO.orderDate);
-                cmd.Parameters.AddWithValue("@TotalPrice", orderDTO.totalPrice);
+                cmd.Parameters.AddWithValue("@Id", orderItemDTO.id);
+                cmd.Parameters.AddWithValue("@OrderID", orderItemDTO.orderID);
+                cmd.Parameters.AddWithValue("@ProductID", orderItemDTO.productID);
+                cmd.Parameters.AddWithValue("@Quantity", orderItemDTO.quantity);
 
                 int result = cmd.ExecuteNonQuery();
 
                 return result > 0;
-            } 
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;   
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool update(OrderItemDTO orderItemDTO)
+        {
+            string query = "UPDATE OrderItem SET ProductID = @ProductID, Quantity = @Quantity WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", orderItemDTO.id);
+                cmd.Parameters.AddWithValue("@ProductID", orderItemDTO.productID);
+                cmd.Parameters.AddWithValue("@Quantity", orderItemDTO.quantity);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
             catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -81,16 +117,16 @@ namespace DAL
             }
             finally
             {
-                if(conn != null)
+                if (conn != null)
                 {
                     conn.Close();
                 }
             }
         }
-
-        public bool update(OrderDTO orderDTO)
+        
+        public bool delete(OrderItemDTO orderItemDTO)
         {
-            string query = "UPDATE Orders SET ClientID = @ClientID, EmployeeID = @EmployeeID, OrderDate = @OrderDate, TotalPrice = @TotalPrice WHERE ID = @Id";
+            string query = "DELETE FROM OrderItem WHERE ID = @Id";
             SqlConnection conn = null;
 
             try
@@ -98,11 +134,7 @@ namespace DAL
                 conn = dbConn.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Id", orderDTO.id);
-                cmd.Parameters.AddWithValue("@ClientId", orderDTO.clientID);
-                cmd.Parameters.AddWithValue("@EmployeeId", orderDTO.employeeID);
-                cmd.Parameters.AddWithValue("@OrderDate", orderDTO.orderDate);
-                cmd.Parameters.AddWithValue("@TotalPrice", orderDTO.totalPrice);
+                cmd.Parameters.AddWithValue("@Id", orderItemDTO.id);
 
                 int result = cmd.ExecuteNonQuery();
 
@@ -122,9 +154,9 @@ namespace DAL
             }
         }
 
-        public bool delete(OrderDTO orderDTO)
+        public bool updateProductQuantity(OrderItemDTO orderItemDTO)
         {
-            string query = "DELETE FROM Orders WHERE ID = @Id";
+            string query = "UPDATE Product SET Quantity = Quantity - @Quantity WHERE ID = @ProductID";
             SqlConnection conn = null;
 
             try
@@ -132,7 +164,8 @@ namespace DAL
                 conn = dbConn.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@Id", orderDTO.id);
+                cmd.Parameters.AddWithValue("@Quantity", orderItemDTO.quantity);
+                cmd.Parameters.AddWithValue("@ProductID", orderItemDTO.productID);
 
                 int result = cmd.ExecuteNonQuery();
 
@@ -142,32 +175,6 @@ namespace DAL
             {
                 Console.WriteLine(ex.Message);
                 return false;
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-
-        public int countOrder()
-        {
-            string query = "SELECT COUNT(*) FROM Orders";
-            SqlConnection conn = null;
-
-            try
-            {
-                conn = dbConn.getConnection();
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                return (int)cmd.ExecuteScalar();
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return 0;
             }
             finally
             {

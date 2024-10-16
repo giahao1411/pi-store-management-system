@@ -49,6 +49,7 @@
     <Compile Include="EmployeeBUS.cs" />
     <Compile Include="LoginBUS.cs" />
     <Compile Include="OrderBUS.cs" />
+    <Compile Include="OrderItemBUS.cs" />
     <Compile Include="ProductBUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

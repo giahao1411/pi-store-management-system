@@ -50,7 +50,7 @@ CREATE TABLE Orders (
 	ClientID VARCHAR(5),
 	EmployeeID VARCHAR(5),
 	OrderDate DATE,
-	TotalPrice float
+	TotalPrice FLOAT
 );
 
 -- Create OrderItem table
@@ -58,7 +58,7 @@ CREATE TABLE OrderItem (
 	ID VARCHAR(5) PRIMARY KEY,
 	OrderID VARCHAR(5),
 	ProductID VARCHAR(5),
-	Quantity int
+	Quantity INT
 );
 
 -- Create Bill table
@@ -118,3 +118,15 @@ INSERT INTO Product  VALUES
 	('PD003', 'Stainless Steel Water Bottle', 'Stay hydrated in style with this double-wall insulated stainless steel water bottle. It keeps drinks cold for up to 24 hours and hot for up to 12 hours. The sleek design fits in most cup holders, and the wide mouth opening makes it easy to fill and clean. Available in multiple colors, it''s perfect for workouts, travel, or everyday use.', 19.99, 75),
 	('PD004', 'Portable Bluetooth Speaker', 'Enjoy your favorite tunes anywhere with this portable Bluetooth speaker. With a robust bass and clear treble, it delivers high-quality sound in a compact design. Its waterproof construction makes it ideal for beach days or pool parties. Plus, with a battery life of up to 10 hours, you can take the party with you wherever you go.', 49.99, 40),
 	('PD005', 'Ergonomic Office Chair', 'Enhance your productivity with this ergonomic office chair designed for comfort during long hours of work. Featuring adjustable height, lumbar support, and breathable mesh material, it promotes healthy posture and reduces fatigue. The modern design fits seamlessly into any office decor, making it an essential addition to your workspace.', 149.99, 25);
+
+INSERT INTO Orders VALUES
+	('OD001', 'CL001', 'EM001', GETDATE(), 129.97)
+
+INSERT INTO OrderItem VALUES
+	('OT001', 'OD001', 'PD001', 1),
+	('OT002', 'OD001', 'PD002', 1),
+	('OT003', 'OD001', 'PD003', 1)
+
+UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD001'
+UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD002'
+UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD003'

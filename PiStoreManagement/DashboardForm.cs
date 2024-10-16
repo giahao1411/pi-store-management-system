@@ -49,7 +49,9 @@ namespace PiStoreManagement
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-
+            OrderForm order = new OrderForm();
+            openChildForm(order);
+            pathLevel.Text = "Home / Dashboard / Order";
         }
 
         private void btnBill_Click(object sender, EventArgs e)
