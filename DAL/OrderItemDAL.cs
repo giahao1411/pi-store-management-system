@@ -153,7 +153,7 @@ namespace DAL
                 }
             }
         }
-
+        
         public bool updateProductQuantity(OrderItemDTO orderItemDTO)
         {
             string query = "UPDATE Product SET Quantity = Quantity - @Quantity WHERE ID = @ProductID";
@@ -175,6 +175,80 @@ namespace DAL
             {
                 Console.WriteLine(ex.Message);
                 return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public ProductDTO getProductById(OrderItemDTO orderItemDTO)
+        {
+            string query = "SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID WHERE OrderItem.ProductID = @ProductID";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@ProductID", orderItemDTO.productID);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                ProductDTO product = new ProductDTO();
+
+                while (reader.Read())
+                {
+                    product.id = reader["ID"].ToString();
+                    product.name = reader["Name"].ToString();
+                    product.description = reader["Description"].ToString();
+                    product.price = (double)reader["Price"];
+                    product.quantity = (int)reader["Quantity"];
+                };
+                return product;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public string getLastestOrderItemID()
+        {
+            string query = "SELECT TOP 1 ID FROM OrderItem ORDER BY CAST(SUBSTRING(ID, 3, LEN(ID) - 2) AS INT) DESC";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                string lastestID = "";
+
+                while (reader.Read())
+                {
+                    lastestID = reader["ID"].ToString();
+                };
+                return lastestID;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
             finally
             {

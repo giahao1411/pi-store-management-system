@@ -94,6 +94,8 @@ ALTER TABLE Client ADD CONSTRAINT uc_Client UNIQUE (Email, Phone);
 ALTER TABLE Employee ALTER COLUMN Email VARCHAR(100)
 ALTER TABLE Client ALTER COLUMN Email VARCHAR(100)
 
+ALTER TABLE Orders ALTER COLUMN OrderDate DATETIME
+
 SELECT * FROM Employee
 SELECT * FROM Account
 SELECT * FROM Client
@@ -130,3 +132,7 @@ INSERT INTO OrderItem VALUES
 UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD001'
 UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD002'
 UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD003'
+
+SELECT * FROM OrderItem WHERE OrderID = 'OD001'
+
+SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID 

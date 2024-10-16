@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
@@ -36,6 +37,16 @@ namespace BUS
         public bool updateProductQuantity(OrderItemDTO orderItemDTO)
         {
             return orderItemDAL.updateProductQuantity(orderItemDTO);
+        }
+
+        public ProductDTO getProductById(OrderItemDTO orderItemDTO)
+        {
+            return orderItemDAL.getProductById(orderItemDTO);
+        }
+
+        public string getLastestOrderItemID()
+        {
+            return orderItemDAL.getLastestOrderItemID();
         }
     }
 }

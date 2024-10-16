@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using BUS;
 using DTO;
@@ -39,7 +40,34 @@ namespace PiStoreManagement
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(cbProductID.Text) && !string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                if (int.TryParse(txtQuantity.Text, out int number))
+                {
+                    OrderItemDTO newOrderItem = new OrderItemDTO
+                    {
+                        id = orderItemIDGenerator(orderItemBUS.getLastestOrderItemID()),
+                        orderID = txtOrderID.Text,
+                        productID = cbProductID.Text,
+                        quantity = int.Parse(txtQuantity.Text)
+                    };
 
+                    bool isSuccess = orderItemBUS.addOrderItem(newOrderItem);
+
+                    if (isSuccess)
+                    {
+                        displayOrderItemList(txtOrderID.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
@@ -64,6 +92,30 @@ namespace PiStoreManagement
 
             btnCancel.Enabled = true;
             btnAddItem.Enabled = true;
+
+            if (!string.IsNullOrEmpty(cbClientID.Text) && !string.IsNullOrEmpty(cbEmployeeID.Text) && !string.IsNullOrEmpty(dtpOrderDate.Text) && !string.IsNullOrEmpty(txtTotalPrice.Text))
+            {
+                OrderDTO newOrder = new OrderDTO
+                {
+                    id = txtOrderID.Text,
+                    clientID = cbClientID.Text,
+                    employeeID = cbEmployeeID.Text,
+                    orderDate = dtpOrderDate.Value,
+                    totalPrice = double.Parse(txtTotalPrice.Text)
+                };
+
+                bool isSuccess = orderBUS.addOrder(newOrder);
+
+                if (isSuccess)
+                {
+                    MessageBox.Show("Order added successfully");
+                    formload();
+                } 
+                else
+                {
+                    MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -290,12 +342,9 @@ namespace PiStoreManagement
             return newId;
         }
 
-        private string orderItemIDGenerator()
+        private string orderItemIDGenerator(string lastestID)
         {
-            int maxIdNumber = orderItemList
-                .Select(odt => int.Parse(odt.id.Substring(2)))
-                .DefaultIfEmpty(0)
-                .Max();
+            int maxIdNumber = int.Parse(lastestID.Substring(2));
 
             int newIdNumber = maxIdNumber + 1;
             string newId;
@@ -338,6 +387,22 @@ namespace PiStoreManagement
                     }
                 }
             }
+        }
+
+        private double calculateTotalPrice(List<OrderItemDTO> currentOrderItem)
+        {
+            double totalPrice = 0;
+
+            foreach (OrderItemDTO item in currentOrderItem)
+            {
+                ProductDTO product = orderItemBUS.getProductById(item);
+                if (product != null) 
+                {
+                    totalPrice += product.price;
+                }
+            }
+
+            return totalPrice;
         }
     }
 }
