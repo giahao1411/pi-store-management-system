@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
@@ -296,7 +297,67 @@ namespace PiStoreManagement
 
         private void btnExportCSV_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "CSV files (*.csv)|*.csv";
+                sfd.FileName = "order.csv";
 
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                        {
+                            // write column headers
+                            for (int i = 0; i <gridOrder.Columns.Count; i++)
+                            {
+                                sw.Write(gridOrder.Columns[i].HeaderText);
+                                if (i < gridOrder.Columns.Count - 1)
+                                {
+                                    sw.Write(",");
+                                }
+                            }
+                            sw.WriteLine();
+
+                            // write row data
+                            foreach (DataGridViewRow row in gridOrder.Rows)
+                            {
+                                if (!row.IsNewRow)
+                                {
+                                    for (int i = 0; i < gridOrder.Columns.Count; i++)
+                                    {
+                                        string cellValue = row.Cells[i].Value?.ToString();
+
+                                        // handle the DateTime datatype
+                                        if (row.Cells[i].Value is DateTime dateValue)
+                                        {
+                                            cellValue = dateValue.ToString("MM/dd/yyyy hh:mm:ss");
+                                        }
+
+                                        // handle if has horizontal and vertical space in Column cell
+                                        if (cellValue != null && (cellValue.Contains(",") || cellValue.Contains("\n") || cellValue.Contains("\r")))
+                                        {
+                                            cellValue = "\"" + cellValue.Replace("\"", "\"\"") + "\"";
+                                        }
+                                        sw.Write(cellValue);
+
+                                        if (i < gridOrder.Columns.Count - 1)
+                                        {
+                                            sw.Write(",");
+                                        }
+                                    }
+                                    sw.WriteLine();
+                                }
+                            }
+                        }
+                        MessageBox.Show("Data exported successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -306,7 +367,18 @@ namespace PiStoreManagement
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtSearch.Text))
+            {
+                string searchText = txtSearch.Text.Trim();
 
+                List<OrderDTO> searchResult = searchOrder(searchText);
+
+                gridOrder.DataSource = searchResult;
+            }
+            else
+            {
+                formload();
+            }
         }
 
         private void gridOrder_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -586,6 +658,17 @@ namespace PiStoreManagement
                 orderItemBUS.deleteOrderItem(item);
                 orderItemBUS.updateProductForDelete(item);
             }
+        }
+
+        private List<OrderDTO> searchOrder(string searchText)
+        {
+            return orderList.Where(ord =>
+                (ord.id.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) || 
+                (ord.clientID.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (ord.employeeID.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                (ord.orderDate.ToString("MM/dd/yyyy hh:mm:ss").Contains(searchText)) ||
+                (ord.totalPrice.ToString().Contains(searchText))
+            ).ToList();
         }
     }
 }
