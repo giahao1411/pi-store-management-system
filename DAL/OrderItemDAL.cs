@@ -225,6 +225,36 @@ namespace DAL
             }
         }
 
+        public bool deleteOrderItemByOrderId(string orderID)
+        {
+            string query = "DELETE FROM OrderItem WHERE OrderID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Id", orderID);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         public string getLastestOrderItemID()
         {
             string query = "SELECT TOP 1 ID FROM OrderItem ORDER BY CAST(SUBSTRING(ID, 3, LEN(ID) - 2) AS INT) DESC";

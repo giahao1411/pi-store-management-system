@@ -44,6 +44,11 @@ namespace BUS
             return orderItemDAL.getProductById(orderItemDTO);
         }
 
+        public bool deleteOrderItemByOrderId(string orderID)
+        {
+            return orderItemDAL.deleteOrderItemByOrderId(orderID);
+        }
+
         public string getLastestOrderItemID()
         {
             return orderItemDAL.getLastestOrderItemID();

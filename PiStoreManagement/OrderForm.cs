@@ -20,6 +20,7 @@ namespace PiStoreManagement
         private List<OrderItemDTO> orderItemList = new List<OrderItemDTO>();
         private OrderBUS orderBUS = new OrderBUS();
         private OrderItemBUS orderItemBUS = new OrderItemBUS();
+        private int previousQuantity = 0;
 
         public OrderForm()
         {
@@ -133,17 +134,61 @@ namespace PiStoreManagement
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            cbClientID.Enabled = true;
+            cbEmployeeID.Enabled = true;
 
+            btnAdd.Enabled = false;
+            btnDelete.Enabled = false;
+            btnSave.Enabled = true;
+            gridOrder.Enabled = false;
+            gridOrderItem.Enabled = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            OrderDTO deleteOrder = orderList.FirstOrDefault(ord => ord.id == txtOrderID.Text);
+            if (deleteOrder != null)
+            {
+                DialogResult result = MessageBox.Show("Are you sure want to delete this order?", "Delete Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    bool isSuccess = orderItemBUS.deleteOrderItemByOrderId(deleteOrder.id) && orderBUS.deleteOrder(deleteOrder);
+                    if (isSuccess)
+                    {
+                        MessageBox.Show("Order deleted successfully");
+                        formload();
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(cbClientID.Text) && !string.IsNullOrEmpty(cbEmployeeID.Text))
+            {
+                OrderDTO updateOrder = orderList.FirstOrDefault(ord => ord.id == txtOrderID.Text);
+                if (updateOrder != null)
+                {
+                    updateOrder.clientID = cbClientID.Text;
+                    updateOrder.employeeID = cbEmployeeID.Text;
 
+                    bool isSuccess = orderBUS.updateOrder(updateOrder);
+
+                    if (isSuccess)
+                    {
+                        MessageBox.Show("Order updated successfully");
+                        formload();
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnExportCSV_Click(object sender, EventArgs e)
@@ -247,6 +292,9 @@ namespace PiStoreManagement
             btnSaveItem.Enabled = false;
 
             gridOrderItem.DataSource = "";
+
+            gridOrder.Enabled = true;
+            gridOrderItem.Enabled = true;
 
             displayOrderList();
         }
