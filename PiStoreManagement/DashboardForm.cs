@@ -56,7 +56,9 @@ namespace PiStoreManagement
 
         private void btnBill_Click(object sender, EventArgs e)
         {
-
+            BillForm bill = new BillForm(); 
+            openChildForm(bill);
+            pathLevel.Text = "Home / Dashboard / Bill";
         }
 
         private void btnAnalytics_Click(object sender, EventArgs e)

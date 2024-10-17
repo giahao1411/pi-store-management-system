@@ -23,6 +23,7 @@ namespace PiStoreManagement
         private List<OrderItemDTO> orderItemList = new List<OrderItemDTO>();
         private OrderBUS orderBUS = new OrderBUS();
         private OrderItemBUS orderItemBUS = new OrderItemBUS();
+        private BillBUS billBUS = new BillBUS();    
 
         public OrderForm()
         {
@@ -62,7 +63,7 @@ namespace PiStoreManagement
                         {
                             displayOrderItemList(txtOrderID.Text);
                             double currentTotalPrice = calculateTotalPrice(orderItemList);
-                            bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+                            bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text) && billBUS.updateTotalPriceAndBillDate(currentTotalPrice, dtpOrderDate.Value, txtOrderID.Text);
 
                             if (isUpdated)
                             {
@@ -100,6 +101,8 @@ namespace PiStoreManagement
             btnAddItem.Enabled = false;
             btnDeleteItem.Enabled = false;
             btnSaveItem.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
             txtQuantity.Enabled = true;
             gridOrderItem.Enabled = false;
             gridOrder.Enabled = false;
@@ -118,7 +121,7 @@ namespace PiStoreManagement
                     if (isSuccess)
                     {
                         double currentTotalPrice = calculateTotalPrice(orderItemList);
-                        bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+                        bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text) && billBUS.updateTotalPriceAndBillDate(currentTotalPrice, dtpOrderDate.Value, txtOrderID.Text);
 
                         if (isUpdated)
                         {
@@ -160,7 +163,7 @@ namespace PiStoreManagement
                             if (isSuccess)
                             {
                                 double currentTotalPrice = calculateTotalPrice(orderItemList);
-                                bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+                                bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text) && billBUS.updateTotalPriceAndBillDate(currentTotalPrice, dtpOrderDate.Value, txtOrderID.Text);
 
                                 if (isUpdated)
                                 {
@@ -176,6 +179,8 @@ namespace PiStoreManagement
                                     btnSaveItem.Enabled = false;
                                     btnAddItem.Enabled = true;
                                     txtQuantity.Enabled = false;
+                                    btnUpdate.Enabled = true;
+                                    btnDelete.Enabled = true;
                                 }
                                 else
                                 {
@@ -221,7 +226,17 @@ namespace PiStoreManagement
                     totalPrice = 0
                 };
 
-                bool isSuccess = orderBUS.addOrder(newOrder);
+                BillDTO newBill = new BillDTO
+                {
+                    id = billIDGenerator(billBUS.getLastestBillID()),
+                    orderID = txtOrderID.Text,
+                    clientID = cbClientID.Text,
+                    employeeID = cbEmployeeID.Text,
+                    billDate = dtpOrderDate.Value,
+                    totalPrice = 0
+                };
+
+                bool isSuccess = orderBUS.addOrder(newOrder) && billBUS.addBill(newBill);
 
                 if (isSuccess)
                 {
@@ -239,6 +254,9 @@ namespace PiStoreManagement
         {
             cbClientID.Enabled = true;
             cbEmployeeID.Enabled = true;
+            cbProductID.Enabled = false;
+            txtQuantity.Enabled = false;
+            btnUpdate.Enabled = false;
 
             btnAdd.Enabled = false;
             btnDelete.Enabled = false;
@@ -256,7 +274,7 @@ namespace PiStoreManagement
                 if (result == DialogResult.Yes)
                 {
                     deleteAndUpdate(orderItemList);
-                    bool isSuccess = orderBUS.deleteOrder(deleteOrder);
+                    bool isSuccess = orderBUS.deleteOrder(deleteOrder) && billBUS.deleteBill(deleteOrder);
                     if (isSuccess)
                     {
                         MessageBox.Show("Order deleted successfully");
@@ -279,8 +297,10 @@ namespace PiStoreManagement
                 {
                     updateOrder.clientID = cbClientID.Text;
                     updateOrder.employeeID = cbEmployeeID.Text;
+                    updateOrder.orderDate = dtpOrderDate.Value;
+                    updateOrder.totalPrice = double.Parse(txtTotalPrice.Text);
 
-                    bool isSuccess = orderBUS.updateOrder(updateOrder);
+                    bool isSuccess = orderBUS.updateOrder(updateOrder) && billBUS.updateBill(updateOrder);
 
                     if (isSuccess)
                     {
@@ -583,6 +603,11 @@ namespace PiStoreManagement
 
         private string orderItemIDGenerator(string lastestID)
         {
+            if (string.IsNullOrEmpty(lastestID))
+            {
+                return "OT001";
+            }
+
             int maxIdNumber = int.Parse(lastestID.Substring(2));
 
             int newIdNumber = maxIdNumber + 1;
@@ -600,6 +625,35 @@ namespace PiStoreManagement
             else
             {
                 newId = "OT00" + newIdNumber.ToString();
+            }
+
+            return newId;
+        }
+
+        private string billIDGenerator(string lastestID)
+        {
+            if (string.IsNullOrEmpty(lastestID)) 
+            {
+                return "BI001";
+            }
+
+            int maxIdNumber = int.Parse(lastestID.Substring(2));
+
+            int newIdNumber = maxIdNumber + 1;
+            string newId;
+
+            // Generate the new ID based on the new numeric value
+            if (newIdNumber >= 100)
+            {
+                newId = "BI" + newIdNumber.ToString();
+            }
+            else if (newIdNumber >= 10)
+            {
+                newId = "BI0" + newIdNumber.ToString();
+            }
+            else
+            {
+                newId = "BI00" + newIdNumber.ToString();
             }
 
             return newId;
