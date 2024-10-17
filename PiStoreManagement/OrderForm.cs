@@ -30,8 +30,6 @@ namespace PiStoreManagement
             gridOrder.MultiSelect = false;
             gridOrderItem.MultiSelect = false;
 
-            dtpOrderDate.MinDate = DateTime.Today;
-
             formload();
             updateClientID();
             updateEmployeeID();
@@ -51,12 +49,26 @@ namespace PiStoreManagement
                         productID = cbProductID.Text,
                         quantity = int.Parse(txtQuantity.Text)
                     };
+                    orderItemList.Add(newOrderItem);
 
                     bool isSuccess = orderItemBUS.addOrderItem(newOrderItem);
 
                     if (isSuccess)
                     {
                         displayOrderItemList(txtOrderID.Text);
+                        double currentTotalPrice = calculateTotalPrice(orderItemList);
+                        bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+                        
+                        if (isUpdated)
+                        {
+                            txtTotalPrice.Text = currentTotalPrice.ToString();
+                            cbProductID.Text = "";
+                            txtQuantity.Clear();
+                        } 
+                        else
+                        {
+                            MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -88,12 +100,13 @@ namespace PiStoreManagement
         private void btnAdd_Click(object sender, EventArgs e)
         {
             txtOrderID.Text = orderIDGenerator();
-            enable();
+            cbClientID.Enabled = true;
+            cbEmployeeID.Enabled = true;
 
             btnCancel.Enabled = true;
             btnAddItem.Enabled = true;
 
-            if (!string.IsNullOrEmpty(cbClientID.Text) && !string.IsNullOrEmpty(cbEmployeeID.Text) && !string.IsNullOrEmpty(dtpOrderDate.Text) && !string.IsNullOrEmpty(txtTotalPrice.Text))
+            if (!string.IsNullOrEmpty(cbClientID.Text) && !string.IsNullOrEmpty(cbEmployeeID.Text) && !string.IsNullOrEmpty(dtpOrderDate.Text))
             {
                 OrderDTO newOrder = new OrderDTO
                 {
@@ -101,7 +114,7 @@ namespace PiStoreManagement
                     clientID = cbClientID.Text,
                     employeeID = cbEmployeeID.Text,
                     orderDate = dtpOrderDate.Value,
-                    totalPrice = double.Parse(txtTotalPrice.Text)
+                    totalPrice = 0
                 };
 
                 bool isSuccess = orderBUS.addOrder(newOrder);
@@ -175,10 +188,14 @@ namespace PiStoreManagement
 
                 displayOrderItemList(txtOrderID.Text);
 
+                cbProductID.Enabled = true;
+                txtQuantity.Enabled = true;
+
                 btnAdd.Enabled = false;
                 btnUpdate.Enabled = true;
                 btnDelete.Enabled = true;
                 btnCancel.Enabled = true;
+                btnAddItem.Enabled = true;
             }
         }
 
@@ -306,14 +323,6 @@ namespace PiStoreManagement
 
             gridOrderItem.Columns[3].Width = 59;
         }
-        
-        private void enable()
-        {
-            cbClientID.Enabled = true;
-            cbEmployeeID.Enabled = true;
-            cbProductID.Enabled = true;
-            txtQuantity.Enabled = true;
-        }
 
         private string orderIDGenerator()
         {
@@ -398,7 +407,7 @@ namespace PiStoreManagement
                 ProductDTO product = orderItemBUS.getProductById(item);
                 if (product != null) 
                 {
-                    totalPrice += product.price;
+                    totalPrice += product.price * item.quantity;
                 }
             }
 

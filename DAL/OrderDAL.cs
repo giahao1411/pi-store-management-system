@@ -152,6 +152,37 @@ namespace DAL
             }
         }
 
+        public bool updateTotalPrice(double totalPrice, string orderID)
+        {
+            string query = "UPDATE Orders SET TotalPrice = @TotalPrice WHERE ID = @Id";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@TotalPrice", totalPrice);
+                cmd.Parameters.AddWithValue("@Id", orderID);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
         public int countOrder()
         {
             string query = "SELECT COUNT(*) FROM Orders";

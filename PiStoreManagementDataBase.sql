@@ -135,4 +135,6 @@ UPDATE Product SET Quantity = Quantity - 1 WHERE ID = 'PD003'
 
 SELECT * FROM OrderItem WHERE OrderID = 'OD001'
 
-SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID 
+SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID WHERE OrderItem.ProductID = 'PD001'
+
+SELECT TOP 1 ID FROM OrderItem ORDER BY CAST(SUBSTRING(ID, 3, LEN(ID) - 2) AS INT) DESC

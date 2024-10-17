@@ -37,5 +37,10 @@ namespace BUS
         {
             return orderDAL.delete(orderDTO);
         }
+
+        public bool updateTotalPrice(double totalPrice, string orderID)
+        {
+            return orderDAL.updateTotalPrice(totalPrice, orderID);
+        }
     }
 }
