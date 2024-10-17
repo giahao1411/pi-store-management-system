@@ -154,7 +154,7 @@ namespace DAL
             }
         }
         
-        public bool updateProductQuantity(OrderItemDTO orderItemDTO)
+        public bool updateProductQuantityAdd(OrderItemDTO orderItemDTO)
         {
             string query = "UPDATE Product SET Quantity = Quantity - @Quantity WHERE ID = @ProductID";
             SqlConnection conn = null;
@@ -185,9 +185,10 @@ namespace DAL
             }
         }
 
-        public ProductDTO getProductById(OrderItemDTO orderItemDTO)
+        public bool updateProductQuantityUpdate(OrderItemDTO newOrderItemDTO, int oldQuantity)
         {
-            string query = "SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID WHERE OrderItem.ProductID = @ProductID";
+            int quantityDifference = oldQuantity - newOrderItemDTO.quantity;
+            string query = "UPDATE Product SET Quantity = Quantity + @quantityDifference WHERE ID = @ProductID";
             SqlConnection conn = null;
 
             try
@@ -195,7 +196,69 @@ namespace DAL
                 conn = dbConn.getConnection();
                 SqlCommand cmd = new SqlCommand(query, conn);
 
+                cmd.Parameters.AddWithValue("@quantityDifference", quantityDifference);
+                cmd.Parameters.AddWithValue("@ProductID", newOrderItemDTO.productID);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool updateProductQuantityDelete(OrderItemDTO orderItemDTO)
+        {
+            string query = "UPDATE Product SET Quantity = Quantity + @Quantity WHERE ID = @ProductID";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Quantity", orderItemDTO.quantity);
                 cmd.Parameters.AddWithValue("@ProductID", orderItemDTO.productID);
+
+                int result = cmd.ExecuteNonQuery();
+
+                return result > 0;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public ProductDTO getProductById(string productID)
+        {
+            string query = "SELECT * FROM Product WHERE ID = @ProductID";
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@ProductID", productID);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 

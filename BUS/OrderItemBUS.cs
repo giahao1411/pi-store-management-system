@@ -34,14 +34,9 @@ namespace BUS
             return orderItemDAL.delete(orderItemDTO);
         }
 
-        public bool updateProductQuantity(OrderItemDTO orderItemDTO)
+        public ProductDTO getProductById(string productID)
         {
-            return orderItemDAL.updateProductQuantity(orderItemDTO);
-        }
-
-        public ProductDTO getProductById(OrderItemDTO orderItemDTO)
-        {
-            return orderItemDAL.getProductById(orderItemDTO);
+            return orderItemDAL.getProductById(productID);
         }
 
         public bool deleteOrderItemByOrderId(string orderID)
@@ -52,6 +47,21 @@ namespace BUS
         public string getLastestOrderItemID()
         {
             return orderItemDAL.getLastestOrderItemID();
+        }
+
+        public bool updateProductForAdd(OrderItemDTO orderItem)
+        {
+            return orderItemDAL.updateProductQuantityAdd(orderItem);
+        }
+
+        public bool updateProductForUpdate(OrderItemDTO newOrderItem, int oldQuantity)
+        {
+            return orderItemDAL.updateProductQuantityUpdate(newOrderItem, oldQuantity);
+        }
+
+        public bool updateProductForDelete(OrderItemDTO orderItem)
+        {
+            return orderItemDAL.updateProductQuantityDelete(orderItem);
         }
     }
 }

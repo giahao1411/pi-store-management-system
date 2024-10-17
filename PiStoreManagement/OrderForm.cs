@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -20,7 +22,6 @@ namespace PiStoreManagement
         private List<OrderItemDTO> orderItemList = new List<OrderItemDTO>();
         private OrderBUS orderBUS = new OrderBUS();
         private OrderItemBUS orderItemBUS = new OrderItemBUS();
-        private int previousQuantity = 0;
 
         public OrderForm()
         {
@@ -43,29 +44,38 @@ namespace PiStoreManagement
             {
                 if (int.TryParse(txtQuantity.Text, out int number))
                 {
-                    OrderItemDTO newOrderItem = new OrderItemDTO
+                    if (isEnoughQuantity(int.Parse(txtQuantity.Text), cbProductID.Text))
                     {
-                        id = orderItemIDGenerator(orderItemBUS.getLastestOrderItemID()),
-                        orderID = txtOrderID.Text,
-                        productID = cbProductID.Text,
-                        quantity = int.Parse(txtQuantity.Text)
-                    };
-                    orderItemList.Add(newOrderItem);
-
-                    bool isSuccess = orderItemBUS.addOrderItem(newOrderItem);
-
-                    if (isSuccess)
-                    {
-                        displayOrderItemList(txtOrderID.Text);
-                        double currentTotalPrice = calculateTotalPrice(orderItemList);
-                        bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
-                        
-                        if (isUpdated)
+                        OrderItemDTO newOrderItem = new OrderItemDTO
                         {
-                            txtTotalPrice.Text = currentTotalPrice.ToString();
-                            cbProductID.Text = "";
-                            txtQuantity.Clear();
-                        } 
+                            id = orderItemIDGenerator(orderItemBUS.getLastestOrderItemID()),
+                            orderID = txtOrderID.Text,
+                            productID = cbProductID.Text,
+                            quantity = int.Parse(txtQuantity.Text)
+                        };
+                        orderItemList.Add(newOrderItem);
+
+                        bool isSuccess = orderItemBUS.addOrderItem(newOrderItem) && orderItemBUS.updateProductForAdd(newOrderItem);
+
+                        if (isSuccess)
+                        {
+                            displayOrderItemList(txtOrderID.Text);
+                            double currentTotalPrice = calculateTotalPrice(orderItemList);
+                            bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+
+                            if (isUpdated)
+                            {
+                                txtTotalPrice.Text = currentTotalPrice.ToString();
+                                cbProductID.Text = "";
+                                txtQuantity.Clear();
+                                displayOrderItemList(txtOrderID.Text);
+                                displayOrderList();
+                            }
+                            else
+                            {
+                                MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                         else
                         {
                             MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -73,7 +83,7 @@ namespace PiStoreManagement
                     }
                     else
                     {
-                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Exceed the available of product's quantity", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -85,17 +95,103 @@ namespace PiStoreManagement
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
         {
-
+            btnUpdateItem.Enabled = false;
+            btnAddItem.Enabled = false;
+            btnDeleteItem.Enabled = false;
+            btnSaveItem.Enabled = true;
+            txtQuantity.Enabled = true;
+            gridOrderItem.Enabled = false;
+            gridOrder.Enabled = false;
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
+            OrderItemDTO deleteOrderItem = orderItemList.FirstOrDefault(odi => odi.productID == cbProductID.Text && odi.orderID == txtOrderID.Text);
+            if (deleteOrderItem != null)
+            {
+                DialogResult result = MessageBox.Show("Are you sure want to delete this order item?", "Delete Order Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    orderItemList.Remove(deleteOrderItem);
+                    bool isSuccess = orderItemBUS.deleteOrderItem(deleteOrderItem) && orderItemBUS.updateProductForDelete(deleteOrderItem);
+                    if (isSuccess)
+                    {
+                        double currentTotalPrice = calculateTotalPrice(orderItemList);
+                        bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
 
+                        if (isUpdated)
+                        {
+                            txtTotalPrice.Text = currentTotalPrice.ToString();
+                            cbProductID.Text = "";
+                            txtQuantity.Clear();
+                            MessageBox.Show("OrderItem deleted successfully");
+                            displayOrderItemList(txtOrderID.Text);
+                            displayOrderList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("An error occurr when update total price. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void btnSaveItem_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                if (int.TryParse(txtQuantity.Text, out int number))
+                {
+                    if (isEnoughQuantity(int.Parse(txtQuantity.Text), cbProductID.Text))
+                    {
+                        OrderItemDTO updateOrderItem = orderItemList.FirstOrDefault(odi => odi.productID == cbProductID.Text && odi.orderID == txtOrderID.Text);
+                        if (updateOrderItem != null)
+                        {
+                            int oldQuantity = updateOrderItem.quantity;
+                            updateOrderItem.quantity = int.Parse(txtQuantity.Text);
 
+                            bool isSuccess = orderItemBUS.updateOrderItem(updateOrderItem) && orderItemBUS.updateProductForUpdate(updateOrderItem, oldQuantity);
+                            if (isSuccess)
+                            {
+                                double currentTotalPrice = calculateTotalPrice(orderItemList);
+                                bool isUpdated = orderBUS.updateTotalPrice(currentTotalPrice, txtOrderID.Text);
+
+                                if (isUpdated)
+                                {
+                                    txtTotalPrice.Text = currentTotalPrice.ToString();
+                                    cbProductID.Text = "";
+                                    txtQuantity.Clear();
+                                    MessageBox.Show("OrderItem updated successfully");
+                                    displayOrderItemList(txtOrderID.Text);
+                                    displayOrderList();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("An error occurr when update total price. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("An error occurr. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Exceed the available product's quantity", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Invalid input. Please try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -241,6 +337,9 @@ namespace PiStoreManagement
                 btnDelete.Enabled = true;
                 btnCancel.Enabled = true;
                 btnAddItem.Enabled = true;
+
+                cbClientID.Enabled = false;
+                cbEmployeeID.Enabled = false;
             }
         }
 
@@ -255,6 +354,9 @@ namespace PiStoreManagement
 
                 cbProductID.Text = selecetedRow.Cells[2].Value.ToString();
                 txtQuantity.Text = selecetedRow.Cells[3].Value.ToString();
+
+                cbProductID.Enabled = false;
+                txtQuantity.Enabled = false;
 
                 btnUpdateItem.Enabled = true;
                 btnDeleteItem.Enabled = true;
@@ -452,7 +554,7 @@ namespace PiStoreManagement
 
             foreach (OrderItemDTO item in currentOrderItem)
             {
-                ProductDTO product = orderItemBUS.getProductById(item);
+                ProductDTO product = orderItemBUS.getProductById(item.productID);
                 if (product != null) 
                 {
                     totalPrice += product.price * item.quantity;
@@ -460,6 +562,13 @@ namespace PiStoreManagement
             }
 
             return totalPrice;
+        }
+
+        private bool isEnoughQuantity(int userQuantity, string productID)
+        {
+            ProductDTO selectedProduct = orderItemBUS.getProductById(productID);
+            if (userQuantity <= selectedProduct.quantity) return true;
+            return false;
         }
     }
 }
