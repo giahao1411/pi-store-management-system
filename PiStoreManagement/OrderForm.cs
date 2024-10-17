@@ -169,6 +169,12 @@ namespace PiStoreManagement
                                     MessageBox.Show("OrderItem updated successfully");
                                     displayOrderItemList(txtOrderID.Text);
                                     displayOrderList();
+
+                                    gridOrder.Enabled = true;
+                                    gridOrderItem.Enabled = true;
+                                    btnSaveItem.Enabled = false;
+                                    btnAddItem.Enabled = true;
+                                    txtQuantity.Enabled = false;
                                 }
                                 else
                                 {
@@ -248,7 +254,8 @@ namespace PiStoreManagement
                 DialogResult result = MessageBox.Show("Are you sure want to delete this order?", "Delete Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    bool isSuccess = orderItemBUS.deleteOrderItemByOrderId(deleteOrder.id) && orderBUS.deleteOrder(deleteOrder);
+                    deleteAndUpdate(orderItemList);
+                    bool isSuccess = orderBUS.deleteOrder(deleteOrder);
                     if (isSuccess)
                     {
                         MessageBox.Show("Order deleted successfully");
@@ -360,6 +367,7 @@ namespace PiStoreManagement
 
                 btnUpdateItem.Enabled = true;
                 btnDeleteItem.Enabled = true;
+                btnAddItem.Enabled = false;
             }
         }
 
@@ -569,6 +577,15 @@ namespace PiStoreManagement
             ProductDTO selectedProduct = orderItemBUS.getProductById(productID);
             if (userQuantity <= selectedProduct.quantity) return true;
             return false;
+        }
+
+        private void deleteAndUpdate(List<OrderItemDTO> orderItemList)
+        {
+            foreach (OrderItemDTO item in orderItemList)
+            {
+                orderItemBUS.deleteOrderItem(item);
+                orderItemBUS.updateProductForDelete(item);
+            }
         }
     }
 }
