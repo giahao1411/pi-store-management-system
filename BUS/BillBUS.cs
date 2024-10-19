@@ -2,9 +2,6 @@
 using DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BUS
 {
@@ -45,6 +42,11 @@ namespace BUS
         public string getLastestBillID()
         {
             return BillDAL.getLastestBillID();
+        }
+
+        public List<string> getBillListByTimePeriod(string query)
+        {
+            return BillDAL.getBillListByTimePeriod(query);
         }
     }
 }

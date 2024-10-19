@@ -52,7 +52,9 @@ namespace PiStoreManagement
 
         private void btnAnalytics_Click(object sender, EventArgs e)
         {
-
+            AnalyticsForm analytics = new AnalyticsForm();
+            openChildForm(analytics);
+            pathLevel.Text = "Home / Dashboard / Analytics";
         }
 
         private void btnExit_Click(object sender, EventArgs e)

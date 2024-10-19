@@ -1,13 +1,7 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -233,6 +227,38 @@ namespace DAL
                     lastestID = reader["ID"].ToString();
                 };
                 return lastestID;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public List<string> getBillListByTimePeriod(string query)
+        {
+            SqlConnection conn = null;
+            List<string> list = new List<string>();
+
+            try
+            {
+                conn = dbConn.getConnection();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string item = reader["Text"].ToString() + "-" + reader["TotalIncome"].ToString();
+                    list.Add(item);
+                }
+                return list;
             }
             catch (SqlException ex)
             {

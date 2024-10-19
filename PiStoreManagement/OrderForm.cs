@@ -171,7 +171,7 @@ namespace PiStoreManagement
                                     gridOrderItem.Enabled = true;
                                     btnSaveItem.Enabled = false;
                                     btnAddItem.Enabled = true;
-                                    txtQuantity.Enabled = false;
+                                    cbProductID.Enabled = true;
                                     btnUpdate.Enabled = true;
                                     btnDelete.Enabled = true;
                                 }
@@ -267,7 +267,7 @@ namespace PiStoreManagement
                 if (result == DialogResult.Yes)
                 {
                     deleteAndUpdate(orderItemList);
-                    bool isSuccess = orderBUS.deleteOrder(deleteOrder) && billBUS.deleteBill(deleteOrder);
+                    bool isSuccess = billBUS.deleteBill(deleteOrder) && orderBUS.deleteOrder(deleteOrder);
                     if (isSuccess)
                     {
                         MessageBox.Show("Order deleted successfully");

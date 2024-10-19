@@ -141,3 +141,37 @@ SELECT * FROM Product INNER JOIN OrderItem ON Product.ID = OrderItem.ProductID W
 SELECT TOP 1 ID FROM OrderItem ORDER BY CAST(SUBSTRING(ID, 3, LEN(ID) - 2) AS INT) DESC
 
 SELECT TOP 1 ID FROM Bill ORDER BY CAST(SUBSTRING(ID, 3, LEN(ID) - 2) AS INT) DESC
+
+--query last 7 days
+SELECT CAST(BillDate AS DATE) AS Text, SUM(TotalPrice) AS TotalIncome
+FROM Bill
+WHERE BillDate >= DATEADD(DAY, -7, GETDATE())
+GROUP BY CAST(BillDate AS DATE)
+ORDER BY Text;
+
+--query by day
+SELECT CAST(BillDate AS DATE) AS Text, SUM(TotalPrice) AS TotalIncome
+FROM Bill
+WHERE CAST(BillDate AS DATE) = CAST(GETDATE() AS DATE)
+GROUP BY CAST(BillDate AS DATE);
+
+--query by week
+SELECT DATEPART(WEEKDAY, BillDate) AS Text, SUM(TotalPrice) AS TotalIncome
+FROM Bill
+WHERE DATEDIFF(WEEK, 0, BillDate) = DATEDIFF(WEEK, 0, GETDATE())
+GROUP BY DATEPART(WEEKDAY, BillDate)
+ORDER BY Text;
+
+--query by month
+SELECT DAY(BillDate) AS Text, SUM(TotalPrice) AS TotalIncome
+FROM Bill
+WHERE MONTH(BillDate) = MONTH(GETDATE()) AND YEAR(BillDate) = YEAR(GETDATE())
+GROUP BY DAY(BillDate)
+ORDER BY Text;
+
+--query by year
+SELECT MONTH(BillDate) AS Text, SUM(TotalPrice) AS TotalIncome
+FROM Bill
+WHERE YEAR(BillDate) = YEAR(GETDATE())
+GROUP BY MONTH(BillDate)
+ORDER BY Text;
