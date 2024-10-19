@@ -47,7 +47,7 @@
             this.gridBill.RowTemplate.Height = 24;
             this.gridBill.Size = new System.Drawing.Size(904, 477);
             this.gridBill.TabIndex = 0;
-            this.gridBill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridBill_CellContentClick);
+            this.gridBill.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridBill_CellClick);
             this.gridBill.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridBill_CellFormatting);
             // 
             // txtSearch

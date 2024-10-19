@@ -322,7 +322,7 @@ namespace PiStoreManagement
                         using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
                         {
                             // write column headers
-                            for (int i = 0; i <gridOrder.Columns.Count; i++)
+                            for (int i = 0; i < gridOrder.Columns.Count; i++)
                             {
                                 sw.Write(gridOrder.Columns[i].HeaderText);
                                 if (i < gridOrder.Columns.Count - 1)

@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.IO;
 using BUS;
 using DTO;
-using System.Net.Mail;
 
 namespace PiStoreManagement
 {
