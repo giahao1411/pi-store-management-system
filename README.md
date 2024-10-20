@@ -60,7 +60,7 @@ The login account is ` admin ` for username and ` admin123 ` for password.
 
 ## License
 
-This program is licensed under the [GNU GPLv3 License](./LICENSE).
+This project is licensed under the [GNU GPLv3 License](./LICENSE).
 
 ## Author
 
