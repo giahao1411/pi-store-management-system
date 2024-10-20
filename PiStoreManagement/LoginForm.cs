@@ -49,5 +49,17 @@ namespace PiStoreManagement
             // close the entire application
             Application.Exit();
         }
+
+        private void ckbShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbShowPassword.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+            } 
+            else
+            {
+                txtPassword.PasswordChar = '*';
+            }
+        }
     }
 }

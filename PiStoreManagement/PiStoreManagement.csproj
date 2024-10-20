@@ -59,12 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analytics.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Analytics.Designer.cs">
-      <DependentUpon>Analytics.cs</DependentUpon>
-    </Compile>
     <Compile Include="AnalyticsForm.cs">
       <SubType>Form</SubType>
     </Compile>

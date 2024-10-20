@@ -39,6 +39,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.ckbShowPassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +70,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(142, 119);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(316, 340);
+            this.pictureBox1.Size = new System.Drawing.Size(316, 355);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
@@ -119,7 +120,7 @@
             this.btnExit.BackColor = System.Drawing.Color.Crimson;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnExit.Location = new System.Drawing.Point(307, 368);
+            this.btnExit.Location = new System.Drawing.Point(307, 379);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(101, 44);
             this.btnExit.TabIndex = 17;
@@ -131,7 +132,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.GhostWhite;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(193, 368);
+            this.btnClear.Location = new System.Drawing.Point(193, 379);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(101, 44);
             this.btnClear.TabIndex = 16;
@@ -144,7 +145,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnLogin.Location = new System.Drawing.Point(193, 318);
+            this.btnLogin.Location = new System.Drawing.Point(193, 329);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(215, 44);
             this.btnLogin.TabIndex = 15;
@@ -152,12 +153,25 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // ckbShowPassword
+            // 
+            this.ckbShowPassword.AutoSize = true;
+            this.ckbShowPassword.BackColor = System.Drawing.Color.White;
+            this.ckbShowPassword.Location = new System.Drawing.Point(193, 304);
+            this.ckbShowPassword.Name = "ckbShowPassword";
+            this.ckbShowPassword.Size = new System.Drawing.Size(134, 22);
+            this.ckbShowPassword.TabIndex = 18;
+            this.ckbShowPassword.Text = "Show Password";
+            this.ckbShowPassword.UseVisualStyleBackColor = false;
+            this.ckbShowPassword.CheckedChanged += new System.EventHandler(this.ckbShowPassword_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.ClientSize = new System.Drawing.Size(602, 496);
+            this.Controls.Add(this.ckbShowPassword);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnLogin);
@@ -191,6 +205,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.CheckBox ckbShowPassword;
     }
 }
 
