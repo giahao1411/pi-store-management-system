@@ -150,10 +150,9 @@ GROUP BY CAST(BillDate AS DATE)
 ORDER BY Text;
 
 --query by day
-SELECT CAST(BillDate AS DATE) AS Text, SUM(TotalPrice) AS TotalIncome
+SELECT CAST(BillDate AS DATETIME) AS Text, TotalPrice AS TotalIncome
 FROM Bill
-WHERE CAST(BillDate AS DATE) = CAST(GETDATE() AS DATE)
-GROUP BY CAST(BillDate AS DATE);
+WHERE CAST(BillDate AS DATE) = CAST(GETDATE() AS DATE);
 
 --query by week
 SELECT DATEPART(WEEKDAY, BillDate) AS Text, SUM(TotalPrice) AS TotalIncome
@@ -175,3 +174,13 @@ FROM Bill
 WHERE YEAR(BillDate) = YEAR(GETDATE())
 GROUP BY MONTH(BillDate)
 ORDER BY Text;
+
+SELECT 
+    FORMAT(BillDate, 'MM/dd/yyyy') AS Text, 
+    SUM(TotalPrice) AS TotalIncome
+FROM 
+    Bill
+WHERE 
+    CAST(BillDate AS DATE) = CAST(GETDATE() AS DATE)
+GROUP BY 
+    FORMAT(BillDate, 'MM/dd/yyyy');
