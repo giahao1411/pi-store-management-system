@@ -56,8 +56,6 @@ Choose ` PiStoreManagement.sln ` on your download Folder
 
 Open project and choose ` Start ` on the Tool Bar or you can choose ` Debug ` then ` Start debugging ` to run the project.
 
-The login account is ` admin ` for username and ` admin123 ` for password. 
-
 ## License
 
 This project is licensed under the [GNU GPLv3 License](./LICENSE).
