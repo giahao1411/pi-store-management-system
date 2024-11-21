@@ -69,4 +69,4 @@ This program was created by
 * [giahao1411](https://github.com/giahao1411)
 
 
-Thanks for visting our project!
+Thanks for visting my project!
